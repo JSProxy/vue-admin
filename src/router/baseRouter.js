@@ -1,6 +1,5 @@
 
 import Home from "@/views/Home.vue";
-
 const baseRouter =[
     {
       path: "/",
@@ -17,5 +16,4 @@ const baseRouter =[
         import(/* webpackChunkName: "about" */ "@/views/About.vue")
     }
   ]
-
   export default baseRouter

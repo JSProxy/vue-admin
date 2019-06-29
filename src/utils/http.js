@@ -1,4 +1,5 @@
 import axios from 'axios';
+import store from '@/store/index';
 import config from '@/config/config';
 import router from '@/routers/router';
 import {Message} from 'element-ui'
@@ -18,6 +19,15 @@ let axiosInstance = axios.create({
         Accept: 'application/json, text/javascript, */*',
         'Content-Type': 'application/json;charset=utf-8'
     },
+    transformRequest: [function (data, headers) 
+        {
+        headers.token = store.state.token;
+        if (headers['Content-type'] === 'multipart/form-data') {
+          return data;
+        } else {
+          return JSON.stringify(data);
+        }
+      }]
 });
 // 超时时间 http请求拦截器
 axiosInstance.interceptors.request.use(
