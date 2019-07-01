@@ -11,7 +11,9 @@ import './login.js'   //路由登入逻辑
 import { Button, Select } from 'element-ui'
 Vue.component(Button.name, Button)
 Vue.component(Select.name, Select)
+console.log('ssss');
 
+/// ..........................
 /* 或写为
  * Vue.use(Button)
  * Vue.use(Select)
