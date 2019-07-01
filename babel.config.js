@@ -1,5 +1,4 @@
 module.exports = {
-  // presets: [["@vue/app",{ useBuiltIns: 'usage' }]], 
   presets: ["@vue/app"],
   plugins: [
     ["component", {
@@ -18,16 +17,3 @@ module.exports = {
     ]
   ]
 };
-
-// { useBuiltIns: 'entry' } //全部引入babel/polyfill
-
-// ["@babel/preset-env", {  这里使用的是@vue/app 他内部 使用的是corejs 2
-//   "useBuiltIns": "usage",
-//   "corejs": 3
-// }]
-// {
-//   polyfills: [   按需要引入
-//     'es6.promise',
-//     'es6.symbol'
-//   ]
-// }

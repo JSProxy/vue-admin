@@ -37,6 +37,7 @@ export default {
     },
 
     list () {
+      // 子路由的信息
       return this.$route.matched
     }
   }

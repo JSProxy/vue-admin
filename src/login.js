@@ -3,11 +3,11 @@ import store from './store'
 import NProgress from 'nprogress' // Progress 进度条
 import 'nprogress/nprogress.css'// Progress 进度条样式
 
-// permissiom judge
+// permissiom judge 路由权限判断
 function hasPermission(roles, permissionRoles) 
 {
   if (roles.indexOf('admin') >= 0) return true // admin权限 直接通过
-  if (!permissionRoles) return true
+  if (!permissionRoles) return true  //无权限判断规则 直接 过
   return roles.some(role => permissionRoles.indexOf(role) >= 0)
 }
 
@@ -16,7 +16,8 @@ const whiteList = ['/login', '/authredirect']// 不重定向白名单
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // 开启Progress
-  if (store.getters.token) { // 判断是否有token
+  if (store.getters.token) 
+  { // 判断是否有token
     if (to.path === '/login') 
     {
       next({ path: '/' })
@@ -38,14 +39,12 @@ router.beforeEach((to, from, next) => {
           })
         })
       } else {
-        
-        store.dispatch('getNowRoutes', to);
 
+        store.dispatch('getNowRoutes', to);
         if (hasPermission(store.getters.roles, to.meta.role))
          {
           next()//
           console.log("has userinfo")
-
         } else {
           next({ path: '/', query: { noGoBack: true }})
         }

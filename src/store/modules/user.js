@@ -1,4 +1,4 @@
-import { loginByEmail, logout, getInfo } from 'api/login';
+import { loginByEmail, logout, getInfo } from '@/api/login';
 import Cookies from 'js-cookie';
 
 const user = {

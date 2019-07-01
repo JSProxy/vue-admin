@@ -1,18 +1,21 @@
-import { asyncRouterMap, constantRouterMap } from 'src/router';
+import { asyncRouterMap, constantRouterMap } from '@/router';
 
 /**
  * 通过meta.role判断是否与当前用户权限匹配
  * @param roles
  * @param route
  */
-function hasPermission(roles, route) {
-  if (route.meta && route.meta.role) {
+function hasPermission(roles, route) 
+{
+  if (route.meta && route.meta.role) 
+  {
+    // roles 可以反问的所有权限 
     return roles.some(role => route.meta.role.indexOf(role) >= 0)
   } else {
+    // 不需要权限的页面
     return true
   }
 }
-
 /**
  * 递归过滤异步路由表，返回符合用户角色权限的路由表
  * @param asyncRouterMap
@@ -48,8 +51,6 @@ function getNowRouter(asyncRouterMap, to) {
 
 }
 
-
-
 const permission = {
   state: {
     routers: constantRouterMap,
@@ -67,26 +68,25 @@ const permission = {
       //     }
 
       // })
-
     },
      SET_NOW_ROUTERS: (state, to) => {
        
           
           // 递归访问 accessedRouters，找到包含to 的那个路由对象，设置给siderbar_routers
-          console.log(state.addRouters)
-        state.addRouters.forEach(e => {
-          if(e.children&& e.children.length ){
+        console.log(state.addRouters)
+        state.addRouters.forEach(e => 
+          {
+          if(e.children&& e.children.length )
+          {
            if( getNowRouter(e.children,to)===true)
-                  state.siderbar_routers=e;
+              state.siderbar_routers=e;
           }
       
-        })
-      
-
+        }) 
      }
-
   },
   actions: {
+
     GenerateRoutes({ commit }, data) {
       return new Promise(resolve => {
         const { roles } = data

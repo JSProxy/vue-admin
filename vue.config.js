@@ -35,7 +35,7 @@ let devConfigureWebpack = {
 };
 
 let prodConfigureWebpack = {
-    // mode: 'production', //指定webpack的编译环境
+    mode: 'production', //指定webpack的编译环境
     devtool: 'cheap-module-source-map', // 无法捕获错误位置，强压缩代码 prod
     output: {
         //将版本号添加进打包的js名中
@@ -82,10 +82,6 @@ let prodConfigureWebpack = {
         },
     },
     plugins: [
-        // 骨架页生成功能
-        // new PrerenderSpaPlugin(path.join(__dirname, 'dist'), ['/', '/products/1', '/products/2', '/products/3']),
-        // 打包可视化
-        // ...bundleView,
         //打包后 文件过大可以使用   nginx 服务端需要 开启gzip压缩  会对服务器cpu增加压力
         //gizp压缩是一种http请求优化方式，通过减少文件体积来提高加载速度 在package.json中添加openGzip字段，用作gizp开启开关
         new CompressionPlugin({
@@ -102,7 +98,6 @@ let prodConfigureWebpack = {
 };
 
 module.exports = {
-    // baseUrl: './', // 默认'/'，部署应用包时的基本 URL
     outputDir: process.env.outputDir, // 输出文件目录
     // assetsDir: "static", //静态资源
     publicPath: isDev ? './' : './', // 基本路径
@@ -127,14 +122,6 @@ module.exports = {
             },
         },
     },
-    // configureWebpack: (config) => {
-    //     // 简单/基础配置，比如引入一个新插件
-    //     // config.plugins = [...config.plugins, ...(isDev ? devConfigureWebpack : prodConfigureWebpack), ...{
-    //     // }]
-    //     // 公共配置 : 注- 如果添加的plugin是已有的，那么添加无效(HtmlPlugin除外，可配置多页面)，需要在baseConfigureWebpack中做修改
-    //     Object.assign(config, (isDev ? devConfigureWebpack : prodConfigureWebpack),
-    //         baseConfigureWebpack)
-    // },
     // 内部会通过merge 合并
     configureWebpack: {
         ...(isDev ? devConfigureWebpack : prodConfigureWebpack),
@@ -142,32 +129,6 @@ module.exports = {
     },
     chainWebpack: (config) => {
         if (!isDev) {
-            // 添加规则
-            // config.module
-            // .rule('htmlimg')
-            // .test(/\.(html)$/)
-            // .use('html-withimg-loader')
-            // .loader('html-withimg-loader')
-
-            // config.module
-            //     .rule('image')
-            //     .test(/\.(jpg|png|gif|jpeg|svg)$/)
-            //     .use('url-loader')
-            //     .loader('url-loader')
-            //     .options({
-            //         limit: 2 * 100, //大于200k就会使用file-loader
-            //         fallback: {
-            //             loader:'file-loader',
-            //             options:{
-            //                 name: 'img/[name][hash].[ext]'
-            //             }
-            //         }
-            //     })
-
-            // .end()
-            // .use('image-webpack-loader')
-            // .loader('image-webpack-loader')
-
             // 删除原有规则
             config.module
                 .rule('images').uses.clear();
@@ -189,6 +150,28 @@ module.exports = {
                 .end()
                 .use('image-webpack-loader')
                 .loader('image-webpack-loader') // 图片压缩
+                .tap((options) => {
+                    options = options || {};
+                    options['mozjpeg'] = {
+                        progressive: true,
+                        quality: 75,
+                    };
+                    // optipng.enabled: false will disable optipng
+                    options['optipng'] = {
+                        enabled: false,
+                    };
+                    options['gifsicle'] = {
+                        interlaced: true
+                    };
+                    options['pngquant'] = {
+                        quality: '75-90',
+                        speed: 4,
+                    };
+                    options['gifsicle'] = {
+                        interlaced: false,
+                    };
+                    return options;
+                });
         }
         // 修改全局配置
         let globalParams = {
@@ -207,7 +190,7 @@ module.exports = {
         });
         // 修复HMR
         config.resolve.symlinks(true);
-        // 链式配置
+        //alias
         config.resolve.alias.set('@', resolve('src')).set('assets', resolve('src/assets')).set('components', resolve('src/components'))
         // 移除 该插件 首屏就不会一次性加载全部路由了
         // 如果需要首屏依赖组件 可以这么写 import (/*webpackPrefetch: true */ './components')
@@ -216,14 +199,6 @@ module.exports = {
     // 构建时开启多进程处理 babel 编译
     parallel: require('os').cpus().length > 1,
     pluginOptions: {
-        // 安装vue-cli-plugin-style-resources-loader插件
-        // 添加全局样式global.scss
-        // "style-resources-loader": {
-        //  preProcessor: "scss",
-        //  patterns: [
-        //   resolve(__dirname, "./src/scss/scss/variables.scss")
-        //  ]
-        // }
     },
     devServer: {
         disableHostCheck: true, //禁止检查host头

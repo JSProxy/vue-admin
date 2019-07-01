@@ -1,26 +1,14 @@
-// import '@babel/polyfill'; //兼容ie  es6 
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import './login.js'   //路由登入逻辑
-
-// import ElementUI from 'element-ui'
-// import 'element-ui/lib/theme-chalk/index.css'
-// Vue.use(ElementUI)
-import { Button, Select } from 'element-ui'
-Vue.component(Button.name, Button)
-Vue.component(Select.name, Select)
-console.log('ssss');
-
-/// ..........................
-/* 或写为
- * Vue.use(Button)
- * Vue.use(Select)
- */
+import './login.js' 
+import './ui.js';
 Vue.config.productionTip = false;
+
 new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount("#app");
+
