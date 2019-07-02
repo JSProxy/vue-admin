@@ -1,29 +1,22 @@
-// import fetch from 'utils/fetch';
+import {get ,post} from '@/utils/http';
 
 export function loginByEmail(email, password) {
   const data = {
     email,
     password
   };
-  return fetch({
-    url: '/login/loginbyemail',
-    method: 'post',
-    data
-  });
+  return post( '/login/loginbyemail',data);
 }
-
 export function logout() {
-  return fetch({
-    url: '/login/logout',
-    method: 'post'
-  });
+  return post('/login/logout');
 }
 
-export function getInfo(token) {
-  return fetch({
-    url: '/user/info',
-    method: 'get',
-    params: { token }
-  });
+export function getInfo(token) 
+{
+  return get('/user/info',{ token });
 }
 
+export  function api_getAuth () 
+{
+    return get(`agency/auth?ajax=1`);
+}

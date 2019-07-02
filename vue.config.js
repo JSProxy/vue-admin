@@ -3,7 +3,7 @@ const isDev = process.env.NODE_ENV !== 'production';
 const CompressionPlugin = require("compression-webpack-plugin");
 const UglifyPlugin = require('uglifyjs-webpack-plugin');
 // webpack-parallel-uglify-plugin 多进程压缩 如果觉得慢可以使用
-const webpack = require('webpack');
+
 let {
     version
 } = require('./package.json');
@@ -189,7 +189,7 @@ module.exports = {
             return args;
         });
         // 修复HMR
-        config.resolve.symlinks(true);
+        // config.resolve.symlinks(true);
         //alias
         config.resolve.alias.set('@', resolve('src')).set('assets', resolve('src/assets')).set('components', resolve('src/components'))
         // 移除 该插件 首屏就不会一次性加载全部路由了
@@ -206,7 +206,7 @@ module.exports = {
         // 服务器代理，其实就是利用了服务端接口不存在跨域的原理
         proxy: {
             '/api': {
-                target: 'https://b-t.bsays.net',
+                target: 'http://b-t.cmfspay.com',
                 changeOrigin: true,
                 pathRewrite: {
                     // 重写上方的/api地址
