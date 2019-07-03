@@ -4,14 +4,12 @@
     <div class="app-body">
       <Sidebar/>
       <main class="main">
-        <breadcrumb :list="list"/>
+        <Breadcrumb/>
         <div class="container-fluid">
           <router-view></router-view>
         </div>
       </main>
-      <AppAside/>
     </div>
-    <AppFooter/>
   </div>
 </template>
 
@@ -19,7 +17,6 @@
 import AppHeader from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import AppAside from '../components/Aside'
-import AppFooter from '../components/Footer'
 import Breadcrumb from '../components/Breadcrumb'
 
 export default {
@@ -28,7 +25,6 @@ export default {
     AppHeader,
     Sidebar,
     AppAside,
-    AppFooter,
     Breadcrumb
   },
   computed: {
@@ -43,3 +39,25 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .app-body{
+    position: absolute;
+    top: 40px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    .main{
+      position: absolute;
+      left: 180px;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+    }
+    .container-fluid{
+      width: 100%;
+      background-color: white;
+    }
+  }
+</style>
+

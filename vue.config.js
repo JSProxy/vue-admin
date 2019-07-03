@@ -189,7 +189,7 @@ module.exports = {
             return args;
         });
         // 修复HMR
-        // config.resolve.symlinks(true);
+        config.resolve.symlinks(true);
         //alias
         config.resolve.alias.set('@', resolve('src')).set('assets', resolve('src/assets')).set('components', resolve('src/components'))
         // 移除 该插件 首屏就不会一次性加载全部路由了

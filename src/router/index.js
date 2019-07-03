@@ -7,7 +7,12 @@ import Full from '@/layout/Full'
 const Login = _import('login/index');
 Vue.use(Router);
 
-export const constantRouterMap = [{
+export const constantRouterMap = [
+  {
+    path: '/',
+    component: Full,
+    hidden: true
+  },{
     path: '/login',
     component: Login,
     hidden: true
