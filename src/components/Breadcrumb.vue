@@ -73,6 +73,7 @@
 						name: route.matched[1].components.default.name
 					})
 				}
+				
 				bus.$emit('tags', this.tagsList);
 				// console.log(this.tagsList)
 			},
@@ -91,13 +92,13 @@
 			}
 		},
 		created() {
-			// this.setTags(this.$route);
+			this.setTags(this.$route);
 		}
 	}
 </script>
 
 
-<style  scoped>
+<style  lang='scss' scoped>
 	.tags {
 		position: relative;
 		height: 30px;
@@ -138,7 +139,7 @@
 
 	.tags-li.active {
 		color: #666;
-		background: #000080;
+		background: #108ee9;
 	}
 
 	.tags-li-title {
@@ -164,8 +165,8 @@
 		text-align: center;
 		width: 110px;
 		height: 30px;
-		background: #fff;
-		box-shadow: -3px 0 15px 3px rgba(0, 0, 0, .1);
+		/* background: #fff; */
+		/* box-shadow: -3px 0 15px 3px rgba(0, 0, 0, .1); */
 		z-index: 10;
 	}
 </style>

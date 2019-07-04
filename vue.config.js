@@ -114,7 +114,7 @@ module.exports = {
             },
             sass: {
                 // 全局scss  也可以加全局变量
-                data: `@import "@/assets/scss/common.scss";`,
+                data: `@import "@/assets/scss/index.scss";`,
                 sourceMap: isDev,
             },
             postcss: {

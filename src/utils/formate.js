@@ -5,7 +5,6 @@ Array.prototype.remove = function(val) {
         this.splice(index, 1);
     }
 };
-
 Date.prototype.addTime = function(strInterval, Number) {
     var dtTmp = this;
     switch (strInterval) {

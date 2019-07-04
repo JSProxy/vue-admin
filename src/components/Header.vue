@@ -8,7 +8,7 @@
           <span class="icon-cell"></span>
         </div>
       </div>
-      <div class="logo-text">华云数字</div>
+      <div class="logo-text" @click="collapseChage">华云数字</div>
     </div>
     <div class="nav-bar">
       <div>admin</div>
@@ -24,9 +24,20 @@
 
 <script type="text/javascript">
 import "@/assets/iconfont/zhuxiao.js";
+import bus from "@/vueTool/bus";
 export default {
   data() {
-    return {};
+    return {
+       collapse: false
+    };
+  },
+   methods: {
+    collapseChage() {
+      //点击隐藏左侧菜单栏，
+      this.collapse = !this.collapse;
+      //非父子组件传值
+      bus.$emit("collapse", this.collapse);
+    }
   },
   components: {}
 };

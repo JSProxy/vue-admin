@@ -1,0 +1,98 @@
+/*文本格式化，超出范围，显示省略号*/
+@mixin text-overflow($width:100%, $display:block) {
+    width: $width;
+    display: $display;
+    white-space: nowrap;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+/* 清除浮动 */
+@mixin clearfix {
+    &:after {
+        clear: both;
+        content: '.';
+        display: block;
+        height: 0;
+        line-height: 0;
+        overflow: hidden;
+    }
+
+    *height: 1%;
+}
+/* 隐藏滑动条 */
+
+@mixin hidebar {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/*弹性盒子居中（传入null不设置该属性）*/
+@mixin flex-center($direction:row, $justify:center, $align:center, $flex-wrap: null) {
+    display: -webkit-flex;
+    display: flex;
+
+    @if ($direction !=null) {
+        flex-direction: $direction;
+    }
+
+    @if ($justify !=null) {
+        justify-content: $justify;
+    }
+
+    @if ($align !=null) {
+        align-items: $align;
+    }
+
+    @if ($flex-wrap !=null) {
+        flex-wrap: $flex-wrap;
+    }
+}
+
+/*绝对定位  参数顺序：上右下左*/
+@mixin positionAbsolute($top:null, $right:null, $bottom:null, $left:null) {
+    position: absolute;
+
+    @if ($left !=""& & $left !=null) {
+        left: $left;
+    }
+
+    @if ($right !=""& & $right !=null) {
+        right: $right;
+    }
+
+    @if ($top !=""& & $top !=null) {
+        top: $top;
+    }
+
+    @if ($bottom !=""& & $bottom !=null) {
+        bottom: $bottom;
+    }
+}
+
+/* 画三角形 */
+@mixin triangle($width:10px, $direction:top, $color:$bgBlueLight) {
+    border: $width solid transparent;
+
+    @if ($direction==top) {
+        // 上三角
+        border-bottom-color: $color;
+    }
+
+    @if ($direction==bottom) {
+        // 下三角
+        border-top-color: $color;
+    }
+
+    @if ($direction==left) {
+        // 左三角
+        border-right-color: $color;
+    }
+
+    @if ($direction==right) {
+        // 右三角
+        border-left-color: $color;
+    }
+}

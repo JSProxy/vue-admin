@@ -1,56 +1,69 @@
-.tc-error{
+.tc-error {
     color: #F56C6C;
 }
-.tc-success{
+
+.tc-success {
     color: #67C23A;
 }
-.tc-Warning{
+
+.tc-Warning {
     color: #E6A23C;
 }
-.tc-Info{
+
+.tc-Info {
     color: #909399;
 }
-.tc-blue{
-    color:#409EFF;
+
+.tc-blue {
+    color: #108ee9;
 }
 
-.bg-error{
+.bg-error {
     background-color: #F56C6C;
 }
-.bg-success{
+
+.bg-success {
     background-color: #67C23A;
 }
-.bg-warning{
+
+.bg-warning {
     background-color: #E6A23C;
 }
-.bg-info{
+
+.bg-info {
     background-color: #909399;
 }
-.bg-blue{
-    background-color:#409EFF;
+
+.bg-blue {
+    background-color: #108ee9;
 }
-.fix-wh-center{
+
+
+
+.fix-wh-center {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .fix-w-center{
+}
+
+.fix-w-center {
     flex: 1;
     display: flex;
     justify-content: center;
-  }
-  .fix-h-center{
+}
+
+.fix-h-center {
     flex: 1;
     display: flex;
     align-items: center;
-  }
+}
 
 // icon-font 需要的一个全局css
-  .icon {
+.icon {
     width: 1em;
     height: 1em;
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
-  }
+}

@@ -7,19 +7,30 @@ import Full from '@/layout/Full'
 const Login = _import('login/index');
 Vue.use(Router);
 
-export const constantRouterMap = [
-  {
+export const constantRouterMap = [{
     path: '/',
     component: Full,
-    hidden: true
-  },{
+    redirect: '/userInfo',
+    hidden: true,
+    meta: {
+      title: "首页"
+    },
+    children: [{
+      path: 'userInfo',
+      name: 'userInfo',
+      component: _import('userInfo/UserInfo'),
+      meta: {
+        title: "首页"
+      },
+    }]
+  }, {
     path: '/login',
     component: Login,
     hidden: true
   },
   {
     path: '/pages',
-    redirect: '/pages/p404',
+    redirect: '/pages/404',
     name: 'Pages',
     component: {
       render(c) {
@@ -50,8 +61,7 @@ export default new Router({
   routes: constantRouterMap
 });
 
-export const asyncRouterMap = [
-  {
+export const asyncRouterMap = [{
     path: '/',
     redirect: '/dashboard',
     name: '首页',
@@ -67,7 +77,9 @@ export const asyncRouterMap = [
         path: '/introduction',
         name: '介绍',
         icon: 'thumbsup',
-        meta: { role: ['admin'] },
+        meta: {
+          role: ['admin']
+        },
         component: _import('Introduction')
       },
     ]
