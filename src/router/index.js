@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-const _import = file => () => import('@/views/' + file + '.vue')
+const _import = file => () => import('@/pages/' + file + '.vue')
 import Full from '@/layout/Full'
 
 /* login */
