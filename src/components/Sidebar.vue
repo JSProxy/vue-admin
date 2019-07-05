@@ -10,7 +10,7 @@
           background-color="#324057"
           text-color="#fff"
         >
-          <Menu :items="items"/>
+          <Menu :items="siderbar_routers.children"/>
         </el-menu>
       </el-col>
     </el-row>
@@ -20,6 +20,7 @@
 <script>
 import bus from "@/vueTool/bus";
 import Menu from "./Menu";
+import { mapGetters } from 'vuex'
 export default {
   name: "LeftMenu",
   data() {
@@ -34,7 +35,7 @@ export default {
         {
           icon: "el-icon-service",
           name: "用户信息",
-          path: "/staff"
+          path: "/userInfo"
         },
         {
           icon: "el-icon-mobile-phone",
@@ -128,7 +129,14 @@ export default {
   components: {
     Menu
   },
+  computed:{
+    ...mapGetters([
+      'siderbar_routers'
+    ])
+  },
   created() {
+    // 获取权限路由
+
     // 通过 Event Bus 进行组件间通信，来折叠侧边栏
     bus.$on("collapse", msg => {
       this.collapse = msg;

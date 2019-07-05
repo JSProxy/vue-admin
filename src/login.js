@@ -16,6 +16,30 @@ const whiteList = ['/login', '/authredirect','/']// 不重定向白名单
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // 开启Progress
+
+  //开发阶段 admin 
+  if(process.env.NODE_ENV == 'development')
+  {
+    if(store.getters.addRouters.length)
+    {
+      console.log('已经拿到异步路由')
+      // 确定当前路由的父路由  获取到侧边栏的列表
+      store.dispatch('getNowRoutes', to);
+      next()
+    }else{
+      store.dispatch('GenerateRoutes', {roles:['admin']}).then(() => 
+    { // 生成可访问的路由表
+      router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
+      console.log(store.getters.addRouters);
+      console.log('请求到异步路由')
+      next({ ...to }) // hack方法 确保addRoutes已完成
+    })
+    }
+    return;
+  }
+
+    // test 和 正式 阶段 把权限 和动态路由打开
+
   if (store.getters.token) 
   { // 判断是否有token
     if (to.path === '/login') 

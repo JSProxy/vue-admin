@@ -1,17 +1,17 @@
 <template>
   <div class="sidebar">
     <template v-for="item in items">
-      <router-link :to="item.path" v-if="item.path">
+      <router-link :to="item.path" v-if="item.path" :key="item.path">
         <el-menu-item v-if="item.children ==null || item.children.length == 0" :index="item.path">
           <i :class="item.icon"></i>
-          <span>{{item.name}}</span>
+          <span>{{item.meta.title}}</span>
         </el-menu-item>
       </router-link>
       <!-- 判断是否有二级路由 -->
-      <el-submenu v-if="item.children" :index="item.path">
+      <el-submenu v-if="item.children" :index="item.path" :key="item.path">
         <template slot="title">
           <i :class="item.icon"></i>
-          <span>{{item.name}}</span>
+          <span>{{item.meta.title}}</span>
         </template>
         <!--递归组件，把遍历的值传回子组件，完成递归调用-->
         <Menu :items="item.children"/>

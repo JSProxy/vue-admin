@@ -8,22 +8,6 @@ const Login = _import('login/index');
 Vue.use(Router);
 
 export const constantRouterMap = [{
-    path: '/',
-    component: Full,
-    redirect: '/userInfo',
-    hidden: true,
-    meta: {
-      title: "首页"
-    },
-    children: [{
-      path: 'userInfo',
-      name: 'userInfo',
-      component: _import('userInfo/UserInfo'),
-      meta: {
-        title: "首页"
-      },
-    }]
-  }, {
     path: '/login',
     component: Login,
     hidden: true
@@ -63,26 +47,29 @@ export default new Router({
 
 export const asyncRouterMap = [{
     path: '/',
-    redirect: '/dashboard',
-    name: '首页',
     component: Full,
-    hidden: false,
+    redirect: '/home',
+    hidden: true,
+    meta: {
+      title: "首页"
+    },
     children: [{
-        path: '/dashboard',
-        name: 'Dashboard',
-        icon: 'speedometer',
-        component: _import('Dashboard')
+      path: '/home',
+      name: 'home',
+      icon: "el-icon-menu",
+      component: _import('home/Home'),
+      meta: {
+        title: "首页"
       },
-      {
-        path: '/introduction',
-        name: '介绍',
-        icon: 'thumbsup',
-        meta: {
-          role: ['admin']
-        },
-        component: _import('Introduction')
+    }, {
+      path: '/userInfo',
+      name: 'userInfo',
+      icon: 'el-icon-service',
+      component: _import('userInfo/UserInfo'),
+      meta: {
+        title: "用户信息"
       },
-    ]
+    }]
   },
   {
     path: '*',

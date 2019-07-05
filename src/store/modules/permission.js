@@ -66,12 +66,10 @@ const permission = {
       //     state.siderbar_routers=e;
             
       //     }
-
       // })
     },
      SET_NOW_ROUTERS: (state, to) => {
        
-          
           // 递归访问 accessedRouters，找到包含to 的那个路由对象，设置给siderbar_routers
         console.log(state.addRouters)
         state.addRouters.forEach(e => 

@@ -105,7 +105,8 @@
 		overflow: hidden;
 		background: #fff;
 		padding-right: 120px;
-		box-shadow: 0 5px 10px #ddd;
+		border-bottom: 1px solid #ddd;
+		// box-shadow: 0 5px 10px #ddd;
 	}
 
 	.tags ul {
